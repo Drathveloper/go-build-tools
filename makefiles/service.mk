@@ -1,6 +1,7 @@
 .PHONY: fmt clean run build
 
-SOURCE.DIR := ./src
+SERVICE_NAME := service
+SOURCE.DIR   := ./src
 
 fmt:
 	@$(call log.info, Code format started)
