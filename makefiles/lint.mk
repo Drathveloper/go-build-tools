@@ -3,7 +3,7 @@ GOLANGCI_LINT.VERSION := v2.6.0
 LINTER.BIN := golangci-lint
 
 THIS.MAKEFILE := $(lastword $(MAKEFILE_LIST))
-THIS.DIR := $(dir $(abspath $(THIS_MAKEFILE)))
+THIS.DIR := $(dir $(abspath $(THIS.MAKEFILE)))
 
 .PHONY: setup-lint lint lint-fix lint-clean
 
