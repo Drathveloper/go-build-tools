@@ -2,6 +2,8 @@ GOLANGCI_LINT.VERSION := v2.6.0
 
 LINTER.BIN := golangci-lint
 
+.PHONY: setup-lint lint lint-fix lint-clean
+
 setup-lint:
 	@$(call log.info, Setup golangci-lint started)
 	@curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(GO.DIR) $(GOLANGCI_LINT.VERSION)

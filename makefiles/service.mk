@@ -1,3 +1,5 @@
+.PHONY: fmt clean run build
+
 fmt:
 	@$(GO.BIN) fmt ./...
 	@$(call log.info, Code formatted successfully)

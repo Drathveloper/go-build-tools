@@ -5,6 +5,8 @@ PROTOC_GEN_GRPC.VERSION := v1.5.1
 PB.DIR        := proto
 PROTOC.BIN    := $(TOOLS.DIR)/protoc
 
+.PHONY: setup-grpc-tools clean-grpc-tools generate-grpc
+
 setup-grpc-tools:
 	@$(call log.info, Setup gRPC tools started)
 	$(GO.BIN) -C scripts run cmd/setup-grpc/main.go $(CURRENT.DIR) $(PROTOC.VERSION)

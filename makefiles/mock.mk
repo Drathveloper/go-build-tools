@@ -3,6 +3,8 @@ GOMOCKHANDLER.VERSION := 1.6.1
 
 GOMOCKHANDLER.BIN := gomockhandler
 
+.PHONY: setup-mock-tools clean-mock-tools generate-mocks check-mocks
+
 setup-mock-tools:
 	@$(call log.info, Setup mock tools started)
 	$(GO.BIN) install go.uber.org/mock/mockgen@v$(GOMOCK.VERSION)
