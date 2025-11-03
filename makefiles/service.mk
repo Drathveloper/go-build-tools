@@ -14,11 +14,11 @@ clean:
 
 run:
 	@$(call log.info, Run go application started)
-	$(GO.BIN) run $(SOURCE.DIR) || ( $(call log.error, Run go application failed) && false )
+	@$(GO.BIN) run $(SOURCE.DIR) || ( $(call log.error, Run go application failed) && false )
 	@$(call log.info, Run go application finished)
 
 
 build:
 	@$(call log.info, Build binary executable started)
-	$(GO.BIN) build -o bin/$(SERVICE_NAME) $(SOURCE.DIR) || ( $(call log.error, Build binary executable failed) && false )
+	@$(GO.BIN) build -o bin/$(SERVICE_NAME) $(SOURCE.DIR) || ( $(call log.error, Build binary executable failed) && false )
 	@$(call log.info, Binary executable builded successfully)
