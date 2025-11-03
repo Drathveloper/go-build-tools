@@ -1,0 +1,60 @@
+version: "2"
+linters:
+  settings:
+    govet:
+      enable-all: true
+    tagalign:
+      order:
+        - json
+        - yaml
+        - validate
+  default: all
+  disable:
+    - depguard
+    - wsl
+    - wsl_v5
+    - noinlineerr
+    - tagliatelle
+    - nlreturn
+  exclusions:
+    generated: lax
+    rules:
+      - path: _test\.go
+        linters:
+          - varnamelen
+          - paralleltest
+          - mirror
+          - lll
+          - funlen
+          - forcetypeassert
+          - gochecknoglobals
+          - err113
+          - dupl
+          - maintidx
+          - cyclop
+      - linters:
+          - gosec
+        text: 'G104:'
+      - linters:
+          - revive
+        text: 'package-comments:'
+    paths:
+      - ^examples/
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  settings:
+    goimports:
+      local-prefixes:
+        - k8s.io/kube-state-metrics
+        - k8s.io/kube-state-metrics/v2
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
