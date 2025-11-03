@@ -11,12 +11,12 @@ setup-lint:
 
 lint:
 	@$(call log.info, Lint started)
-	@PATH=$$PATH:$(GO.DIR) $(LINTER.BIN) run || ( $(call log.error, Lint failed) && false )
+	@PATH=$$PATH:$(GO.DIR) $(LINTER.BIN) --config configs/golangci.yml run || ( $(call log.error, Lint failed) && false )
 	@$(call log.info, Lint finished successfully)
 
 lint-fix:
 	@$(call log.info, Lint with fix started)
-	@PATH=$$PATH:$(GO.DIR) $(LINTER.BIN) run --fix || ( $(call log.error, Lint failed) && false )
+	@PATH=$$PATH:$(GO.DIR) $(LINTER.BIN) --config configs/golangci.yml run --fix || ( $(call log.error, Lint failed) && false )
 	@$(call log.info, Lint with fix finished successfully)
 
 lint-clean:
