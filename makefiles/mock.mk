@@ -1,6 +1,3 @@
-GOMOCK.VERSION        := 0.6.0
-GOMOCKHANDLER.VERSION := 1.6.1
-
 GOMOCKHANDLER.BIN := gomockhandler
 
 .PHONY: setup-mock-tools clean-mock-tools generate-mocks check-mocks

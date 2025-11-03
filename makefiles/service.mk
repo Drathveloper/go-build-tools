@@ -1,11 +1,12 @@
-.PHONY: fmt clean run build
-
 SERVICE_NAME := service
 
 SOURCE.DIR   := ./src
+BIN.DIR      := ./bin
 REPORTS.DIR  := ./reports
 
 SOURCE.PKGS  := $(shell $(GO.BIN) list $(SOURCE.DIR)/... | grep -v "vendor" 2>/dev/null)
+
+.PHONY: fmt clean run build test
 
 fmt:
 	@$(call log.info, Code format started)
@@ -14,7 +15,8 @@ fmt:
 
 clean:
 	@$(call log.info, Clean binary executables started)
-	@rm -rf bin/* >/dev/null 2>&1 || true
+	@rm -rf $(BIN.DIR) >/dev/null 2>&1 || true
+	@rm -rf $(REPORTS.DIR) >/dev/null 2>&1 || true
 	@$(call log.info, Binary executables cleaned successfully)
 
 run:
@@ -24,11 +26,11 @@ run:
 
 build:
 	@$(call log.info, Build binary executable started)
-	@$(GO.BIN) build -o bin/$(SERVICE_NAME) $(SOURCE.DIR) || ( $(call log.error, Build binary executable failed) && false )
+	@$(GO.BIN) build -o $(BIN.DIR)/$(SERVICE_NAME) $(SOURCE.DIR) || ( $(call log.error, Build binary executable failed) && false )
 	@$(call log.info, Binary executable builded successfully)
 
-test:
+test: check-mocks
 	@$(call log.info, Run unit tests started)
 	@mkdir -p $(REPORTS.DIR)
-	$(GO.BIN) test -v $(SOURCE.PKGS) -coverprofile $(REPORTS.DIR)/coverage || ( $(call log.error, Run unit tests failed) && false )
+	@$(GO.BIN) test -v $(SOURCE.PKGS) -coverprofile $(REPORTS.DIR)/coverage || ( $(call log.error, Run unit tests failed) && false )
 	@$(call log.info, Unit tests finished successfully)

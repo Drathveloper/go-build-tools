@@ -1,7 +1,3 @@
-PROTOC.VERSION          := 33.0
-PROTOC_GEN.VERSION      := v1.36.10
-PROTOC_GEN_GRPC.VERSION := v1.5.1
-
 PB.DIR        := proto
 PROTOC.BIN    := $(TOOLS.DIR)/protoc
 

@@ -1,5 +1,3 @@
-GOLANGCI_LINT.VERSION := v2.6.0
-
 LINTER.BIN := golangci-lint
 
 THIS.MAKEFILE := $(lastword $(MAKEFILE_LIST))
