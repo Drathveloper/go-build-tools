@@ -12,12 +12,12 @@ setup-lint:
 	@curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(GO.DIR) $(GOLANGCI_LINT.VERSION)
 	@$(call log.info, Setup golangci-lint finished successfully)
 
-lint:
+lint: setup-lint
 	@$(call log.info, Lint started)
 	@PATH=$$PATH:$(GO.DIR) $(LINTER.BIN) --config $(THIS.DIR)../configs/golangci.yml run || ( $(call log.error, Lint failed) && false )
 	@$(call log.info, Lint finished successfully)
 
-lint-fix:
+lint-fix: setup-lint
 	@$(call log.info, Lint with fix started)
 	@PATH=$$PATH:$(GO.DIR) $(LINTER.BIN) --config $(THIS.DIR)../configs/golangci.yml run --fix || ( $(call log.error, Lint failed) && false )
 	@$(call log.info, Lint with fix finished successfully)
