@@ -10,7 +10,7 @@ endif
 
 CURRENT.DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 
-TOOLS.DIR    := tools
+TOOLS.DIR   := tools
 
 Logs.Color.NoColor=\033[0m
 Logs.Color.Black=\033[1;30m
