@@ -34,3 +34,9 @@ test: check-mocks
 	@mkdir -p $(REPORTS.DIR)
 	@$(GO.BIN) test -v $(SOURCE.PKGS) -coverprofile $(REPORTS.DIR)/coverage || ( $(call log.error, Run unit tests failed) && false )
 	@$(call log.info, Unit tests finished successfully)
+
+benchmark:
+	@$(call log.info, Run benchmark tests started)
+	@mkdir -p $(REPORTS.DIR)
+	@$(GO.BIN) test -bench=. -benchmem -memprofile=$(REPORTS.DIR)/mem.out -cpuprofile=$(REPORTS.DIR)/cpu.out > $(REPORTS.DIR)/benchmarks || ( $(call log.error, Run benchmark tests failed) && false )
+	@$(call log.info, Benchmark tests finished successfully)
