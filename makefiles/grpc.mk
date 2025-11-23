@@ -1,4 +1,4 @@
-PB.DIR        := proto
+PB.DIR        ?= proto
 PROTOC.BIN    := $(TOOLS.DIR)/protoc
 
 .PHONY: setup-grpc-tools clean-grpc-tools generate-grpc

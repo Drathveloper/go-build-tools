@@ -1,10 +1,10 @@
 SERVICE_NAME := service
 
-SOURCE.DIR   := ./src
-BIN.DIR      := ./bin
-REPORTS.DIR  := ./reports
+SOURCE.DIR   ?= ./src
+BIN.DIR      ?= ./bin
+REPORTS.DIR  ?= ./reports
 
-SOURCE.PKGS  := $(shell $(GO.BIN) list $(SOURCE.DIR)/... | grep -v "vendor" 2>/dev/null)
+SOURCE.PKGS  = $(shell $(GO.BIN) list $(SOURCE.DIR)/... | grep -v "vendor" 2>/dev/null)
 
 .PHONY: fmt clean run build test
 

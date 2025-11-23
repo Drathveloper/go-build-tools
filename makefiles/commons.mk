@@ -1,11 +1,11 @@
-GO.BIN     = go
-GO.ARCH    = $(shell $(GO.BIN) env GOARCH 2>/dev/null)
-GO.OS      = $(shell $(GO.BIN) env GOOS 2>/dev/null)
-GO.PATH    = $(shell $(GO.BIN) env GOPATH 2>/dev/null)
-GO.VERSION = $(shell $(GO.BIN) env GOVERSION 2>/dev/null)
-GO.DIR     = $(shell $(GO.BIN) env GOBIN)
+GO.BIN     := go
+GO.ARCH    := $(shell $(GO.BIN) env GOARCH 2>/dev/null)
+GO.OS      := $(shell $(GO.BIN) env GOOS 2>/dev/null)
+GO.PATH    := $(shell $(GO.BIN) env GOPATH 2>/dev/null)
+GO.VERSION := $(shell $(GO.BIN) env GOVERSION 2>/dev/null)
+GO.DIR     := $(shell $(GO.BIN) env GOBIN)
 ifeq ($(GO.DIR),)
-GO.DIR     = $(shell $(GO.BIN) env GOPATH)/bin
+GO.DIR     := $(shell $(GO.BIN) env GOPATH)/bin
 endif
 
 CURRENT.DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
