@@ -6,7 +6,12 @@ REPORTS.DIR  ?= ./reports
 
 SOURCE.PKGS  = $(shell $(GO.BIN) list $(SOURCE.DIR)/... | grep -v "vendor" 2>/dev/null)
 
-.PHONY: fmt clean run compile build test benchmark
+.PHONY: download-deps fmt clean run compile build test benchmark
+
+download-deps:
+	@$(call log.info, Download go.mod dependencies started)
+	@$(GO.BIN) mod download || ( $(call log.error, Code format failed) && false )
+	@$(call log.info, go.mod dependencies downloaded successfully)
 
 fmt:
 	@$(call log.info, Code format started)
