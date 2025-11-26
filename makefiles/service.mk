@@ -6,7 +6,7 @@ REPORTS.DIR  ?= ./reports
 
 SOURCE.PKGS  = $(shell $(GO.BIN) list $(SOURCE.DIR)/... | grep -v "vendor" 2>/dev/null)
 
-.PHONY: fmt clean run build test
+.PHONY: fmt clean run compile build test benchmark
 
 fmt:
 	@$(call log.info, Code format started)
@@ -23,6 +23,11 @@ run:
 	@$(call log.info, Run go application started)
 	@$(GO.BIN) run $(SOURCE.DIR) || ( $(call log.error, Run go application failed) && false )
 	@$(call log.info, Run go application finished)
+
+compile:
+	@$(call log.info, Compile go application started)
+	@$(GO.BIN) build $(SOURCE.DIR) || ( $(call log.error, Run go application failed) && false )
+	@$(call log.info, Compile go application finished)
 
 build:
 	@$(call log.info, Build binary executable started)
