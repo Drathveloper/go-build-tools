@@ -7,11 +7,6 @@ on:
         required: false
         type: string
         default: ""
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
-  workflow_dispatch:
 
 jobs:
   setup:
