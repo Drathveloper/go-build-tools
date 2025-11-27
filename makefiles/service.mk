@@ -29,12 +29,12 @@ run:
 	@$(GO.BIN) run $(SOURCE.DIR) || ( $(call log.error, Run go application failed) && false )
 	@$(call log.info, Run go application finished)
 
-compile:
+compile: generate-grpc
 	@$(call log.info, Compile go application started)
 	@$(GO.BIN) build $(SOURCE.DIR) || ( $(call log.error, Run go application failed) && false )
 	@$(call log.info, Compile go application finished)
 
-build:
+build: generate-grpc
 	@$(call log.info, Build binary executable started)
 	@$(GO.BIN) build -o $(BIN.DIR)/$(SERVICE_NAME) $(SOURCE.DIR) || ( $(call log.error, Build binary executable failed) && false )
 	@$(call log.info, Binary executable builded successfully)

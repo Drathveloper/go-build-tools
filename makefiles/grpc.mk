@@ -3,6 +3,7 @@ PROTOC.BIN    := $(TOOLS.DIR)/protoc
 
 .PHONY: setup-grpc-tools clean-grpc-tools generate-grpc
 
+ifneq ($(wildcard $(PB.DIR)),)
 setup-grpc-tools:
 	@$(call log.info, Setup gRPC tools started)
 	$(GO.BIN) -C scripts run cmd/setup-grpc/main.go $(CURRENT.DIR) $(PROTOC.VERSION)
@@ -23,3 +24,7 @@ ifneq ($(shell find $(PB.DIR) -name "*.proto" 2>/dev/null),)
 	$(PROTOC.BIN) -I $(PB.DIR) --go_out=. --go-grpc_out=. $(shell find $(PB.DIR) -name "*.proto" 2>/dev/null)
 endif
 	@$(call log.info, Generate gRPC stubs finished successfully)
+else
+setup-grpc-tools clean-grpc-tools generate-grpc:
+	@$(call log.info, Skipping gRPC generation because $(PB.DIR) is not present)
+endif
