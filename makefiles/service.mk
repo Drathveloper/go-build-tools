@@ -1,4 +1,4 @@
-SERVICE_NAME := service
+SERVICE_NAME ?= service
 
 SOURCE.DIR   ?= ./src
 BIN.DIR      ?= ./bin

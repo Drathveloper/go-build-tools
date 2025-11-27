@@ -3,6 +3,8 @@ LINTER.BIN := golangci-lint
 THIS.MAKEFILE := $(lastword $(MAKEFILE_LIST))
 THIS.DIR := $(dir $(abspath $(THIS.MAKEFILE)))
 
+LINT.CONFIG ?= $(THIS.DIR)../configs/golangci.yml
+
 .PHONY: setup-lint lint lint-fix lint-clean
 
 setup-lint:
@@ -12,12 +14,12 @@ setup-lint:
 
 lint: setup-lint
 	@$(call log.info, Lint started)
-	@PATH=$$PATH:$(GO.DIR) $(LINTER.BIN) --config $(THIS.DIR)../configs/golangci.yml run || ( $(call log.error, Lint failed) && false )
+	@PATH=$$PATH:$(GO.DIR) $(LINTER.BIN) --config $(LINT.CONFIG) run || ( $(call log.error, Lint failed) && false )
 	@$(call log.info, Lint finished successfully)
 
 lint-fix: setup-lint
 	@$(call log.info, Lint with fix started)
-	@PATH=$$PATH:$(GO.DIR) $(LINTER.BIN) --config $(THIS.DIR)../configs/golangci.yml run --fix || ( $(call log.error, Lint failed) && false )
+	@PATH=$$PATH:$(GO.DIR) $(LINTER.BIN) --config $(LINT.CONFIG) run --fix || ( $(call log.error, Lint failed) && false )
 	@$(call log.info, Lint with fix finished successfully)
 
 lint-clean:
