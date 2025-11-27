@@ -16,6 +16,7 @@ linters:
     - noinlineerr
     - tagliatelle
     - nlreturn
+    - exhaustruct
   exclusions:
     generated: lax
     rules:
