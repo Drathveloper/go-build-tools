@@ -1,6 +1,12 @@
 name: Go Library CI
 
 on:
+  workflow_call:
+    inputs:
+      go-version:
+        required: false
+        type: string
+        default: ""
   push:
     branches: [master]
   pull_request:
