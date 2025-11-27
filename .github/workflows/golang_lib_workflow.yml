@@ -77,6 +77,13 @@ jobs:
         with:
           name: coverage
           path: reports/coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: reports/coverage
+          flags: unittests
+          name: codecov-umbrella
 
   compile:
     needs: setup
