@@ -6,6 +6,10 @@ REPORTS.DIR  ?= ./reports
 
 SOURCE.PKGS  = $(shell $(GO.BIN) list $(SOURCE.DIR)/... | grep -v "vendor" 2>/dev/null)
 
+COMMIT     := $(shell git rev-parse --verify HEAD)
+VERSION    := $(shell git describe --tags --exact-match --match "v*" 2>/dev/null || echo "v0.0.0")
+BUILD_DATE := $(shell date -u +"%Y-%m-%dT%H:%M:%S+00:00")
+
 .PHONY: download-deps fmt clean run compile build test benchmark
 
 download-deps:
@@ -36,7 +40,7 @@ compile: generate-grpc
 
 build: generate-grpc
 	@$(call log.info, Build binary executable started)
-	@$(GO.BIN) build -o $(BIN.DIR)/$(SERVICE_NAME) $(SOURCE.DIR) || ( $(call log.error, Build binary executable failed) && false )
+	@$(GO.BIN) build -ldflags "-X 'main.Commit=$(COMMIT)' -X 'main.Version=$(VERSION)' -X 'main.BuildTime=$(BUILD_DATE)'" -o $(BIN.DIR)/$(SERVICE_NAME) $(SOURCE.DIR) || ( $(call log.error, Build binary executable failed) && false )
 	@$(call log.info, Binary executable builded successfully)
 
 test: check-mocks
