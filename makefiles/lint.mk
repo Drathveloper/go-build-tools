@@ -9,7 +9,7 @@ LINT.CONFIG ?= $(THIS.DIR)../configs/golangci.yml
 
 setup-lint:
 	@$(call log.info, Setup golangci-lint started)
-	@curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(GO.DIR) $(GOLANGCI_LINT.VERSION)
+	@curl -sSfL https://golangci-lint.run/install.sh | sh -s -- -b $(GO.DIR) $(GOLANGCI_LINT.VERSION)
 	@$(call log.info, Setup golangci-lint finished successfully)
 
 lint: setup-lint
