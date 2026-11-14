@@ -22,7 +22,8 @@ func main() {
 	basePath := os.Args[1]
 	grpcVersion := os.Args[2]
 	toolsAbsDir := filepath.Join(basePath, toolsDir)
-	if _, err := os.Stat(filepath.Join(toolsAbsDir, binName)); err == nil {
+	protocPath := filepath.Join(toolsAbsDir, binName)
+	if _, err := os.Stat(protocPath); err == nil { //nolint:gosec // G703: path comes from the CLI caller by design
 		os.Exit(0)
 	}
 	if err := helpers.CreateToolsDir(toolsAbsDir); err != nil {
@@ -45,17 +46,17 @@ func main() {
 		log.Println(err)
 		os.Exit(1)
 	}
-	if err = os.Remove(zipPath); err != nil {
+	if err = os.Remove(zipPath); err != nil { //nolint:gosec // G703: path comes from the CLI caller by design
 		log.Println(err)
 		os.Exit(1)
 	}
 	execPath := filepath.Join(contentPath, "bin", binName)
 	outPath := filepath.Join(toolsAbsDir, binName)
-	if err = os.Rename(execPath, outPath); err != nil {
+	if err = os.Rename(execPath, outPath); err != nil { //nolint:gosec // G703: path comes from the CLI caller by design
 		log.Println(err)
 		os.Exit(1)
 	}
-	if err = os.RemoveAll(contentPath); err != nil {
+	if err = os.RemoveAll(contentPath); err != nil { //nolint:gosec // G703: path comes from the CLI caller by design
 		log.Println(err)
 		os.Exit(1)
 	}
