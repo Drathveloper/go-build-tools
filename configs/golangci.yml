@@ -17,6 +17,7 @@ linters:
     - tagliatelle
     - nlreturn
     - exhaustruct
+    - exhaustruct_v5
   exclusions:
     generated: lax
     rules:
