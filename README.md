@@ -58,7 +58,7 @@ The following variables can be overridden in your Makefile:
 ### Tools Versions
 GOMOCK.VERSION: Gomock version. Default: 0.6.0
 GOMOCKHANDLER.VERSION: Gomockhandler version. Default: 1.6.1
-GOLANGCI_LINT.VERSION: GolangCI lint version. Default: v2.6.0
+GOLANGCI_LINT.VERSION: GolangCI lint version. Default: v2.15.0
 PROTOC.VERSION: Protoc compiler version. Default: 33.0
 PROTOC_GEN.VERSION: Protoc gen plugin version. Default: v1.36.10
 PROTOC_GEN_GRPC.VERSION: Protoc gen gRPC plugin version. Default: v1.5.1
