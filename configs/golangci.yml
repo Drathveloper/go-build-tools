@@ -1,6 +1,8 @@
 version: "2"
 linters:
   settings:
+    exhaustive:
+      default-signifies-exhaustive: true
     govet:
       enable-all: true
     tagalign:
@@ -53,8 +55,7 @@ formatters:
   settings:
     goimports:
       local-prefixes:
-        - k8s.io/kube-state-metrics
-        - k8s.io/kube-state-metrics/v2
+        - github.com/Drathveloper
   exclusions:
     generated: lax
     paths:
